@@ -1,28 +1,50 @@
-# [your app name here]
+# StudyBuddy Planner
 
 CodePath WEB103 Final Project
 
-Designed and developed by: [your names here]
+Designed and developed by: Group 2 - Web 103 Final Project
 
-🔗 Link to deployed app:
+🔗 Link to deployed app: cooming soon
+
+## Group Members
+
+- Thuan Nguyen
+- Roel Crodua
+- Arav Dungrani
 
 ## About
 
+StudyBuddy Planner is a simple and intuitive task management web application designed specifically for students. It helps users organize their academic responsibilities, prioritize tasks, and track their progress in one centralized platform.
+
 ### Description and Purpose
 
-[text goes here]
+StudyBuddy Planner is a web application designed to help students manage their academic tasks, track deadlines, and prioritize their work efficiently.
+
+The purpose of this app is to provide a simple and focused interface for organizing study tasks and improving productivity.
 
 ### Inspiration
 
-[text goes here]
+This app is inspired by how students often use multiple tools like notes, reminders, and calendars to manage their tasks. StudyBuddy Planner simplifies this into one unified platform.
 
 ## Tech Stack
 
-Frontend:
+Frontend: React, React Router, CSS
 
-Backend:
+Backend: Node.js, Express.js
+
+Database: PostgreSQL
+
+Deployment: Render
 
 ## Features
+
+- Create a new task – users can add a study task with a title and due date
+- Edit a task – users can update existing task information
+- Delete a task – users can remove tasks they no longer need
+- Mark task as completed – users can track finished work
+- Assign priority levels – users can label tasks as high, medium, or low priority
+- Filter tasks by priority or status – users can focus on specific tasks
+- Track completion progress – users can monitor their overall study progress
 
 ### [Name of Feature 1]
 
@@ -46,4 +68,21 @@ Backend:
 
 ## Installation Instructions
 
-[instructions go here]
+1. Clone the repository:
+   git clone <your-repo-url>
+
+2. Navigate into the project folder:
+   cd <repo-name>
+
+3. Install frontend dependencies:
+   cd client
+   npm install
+
+4. Install backend dependencies:
+   cd ../server
+   npm install
+
+5. Start the frontend and backend servers:
+   npm run dev
+
+Project structure and setup steps will be updated as development begins in later milestones.
