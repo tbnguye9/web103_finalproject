@@ -37,34 +37,34 @@ Database: PostgreSQL
 Deployment: Render
 
 ## Features
+- **Create a new task** – users can add a study task with a title and due date
+  [gif goes here]
+- **Edit a task** – users can update existing task information
+  [gif goes here]
+- **Delete a task** – users can remove tasks they no longer need
+  [gif goes here]
+- **Mark task as completed** – users can track finished work
+  [gif goes here]
+- **Assign priority levels** – users can label tasks as high, medium, or low priority
+  [gif goes here]
+- **Filter tasks by priority or status** – users can focus on specific tasks
+  [gif goes here]
+- **Track completion progress** – users can monitor their overall study progress
+  [gif goes here]
 
-- Create a new task – users can add a study task with a title and due date
-- Edit a task – users can update existing task information
-- Delete a task – users can remove tasks they no longer need
-- Mark task as completed – users can track finished work
-- Assign priority levels – users can label tasks as high, medium, or low priority
-- Filter tasks by priority or status – users can focus on specific tasks
-- Track completion progress – users can monitor their overall study progress
-
-### [Name of Feature 1]
-
-[short description goes here]
-
-[gif goes here]
-
-### [Name of Feature 2]
-
-[short description goes here]
-
-[gif goes here]
-
-### [Name of Feature 3]
-
-[short description goes here]
-
-[gif goes here]
-
-### [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
+### Additional Possible Features
+- **User Authentication**: Secure login/register to allow personalized, private task management across sessions.
+  [gif goes here]
+- **Search Functionality**: Quickly find tasks by keywords or dates, useful for students managing large lists.
+  [gif goes here]
+- **Recurring Tasks**: Set tasks to repeat automatically (e.g., daily reviews), reducing manual effort for routine studies.
+  [gif goes here]
+- **Reminders and Notifications**: Get alerts for due dates via email or in-app, helping prevent missed deadlines.
+  [gif goes here]
+- **Dark Mode**: Switch themes for comfortable use during late-night studying.
+  [gif goes here]
+- **Mobile Responsiveness/PWA**: Access offline and install like an app for on-the-go task checking.
+  [gif goes here]
 
 ## Installation Instructions
 
