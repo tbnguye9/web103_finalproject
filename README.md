@@ -37,22 +37,26 @@ Database: PostgreSQL
 Deployment: Render
 
 ## Features
-- **Create a new task** – users can add a study task with a title and due date
+
+- ✅ **Create a new task** – users can add a study task with a title and due date
+
+  ![Demo](./planning/images/milestone3-demo.gif)
+
+- ❌ **Edit a task** – users can update existing task information
   [gif goes here]
-- **Edit a task** – users can update existing task information
+- ❌ **Delete a task** – users can remove tasks they no longer need
   [gif goes here]
-- **Delete a task** – users can remove tasks they no longer need
+- ❌ **Mark task as completed** – users can track finished work
   [gif goes here]
-- **Mark task as completed** – users can track finished work
-  [gif goes here]
-- **Assign priority levels** – users can label tasks as high, medium, or low priority
+- ❌ **Assign priority levels** – users can label tasks as high, medium, or low priority
   [gif goes here]
 - **Filter tasks by priority or status** – users can focus on specific tasks
   [gif goes here]
-- **Track completion progress** – users can monitor their overall study progress
+- ❌ **Track completion progress** – users can monitor their overall study progress
   [gif goes here]
 
 ### Additional Possible Features
+
 - **User Authentication**: Secure login/register to allow personalized, private task management across sessions.
   [gif goes here]
 - **Search Functionality**: Quickly find tasks by keywords or dates, useful for students managing large lists.
