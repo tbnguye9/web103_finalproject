@@ -1,9 +1,13 @@
-function TaskList({ tasks }) {
+function TaskList({ errorMessage, isLoading, onDeleteTask, onEditTask, tasks }) {
   return (
     <section className="task-list-section">
       <h2>Task List</h2>
 
-      {tasks.length === 0 ? (
+      {errorMessage ? <p className="form-error">{errorMessage}</p> : null}
+
+      {isLoading ? <p className="empty-message">Loading tasks...</p> : null}
+
+      {!isLoading && tasks.length === 0 ? (
         <p className="empty-message">
           No tasks yet. Add your first study task.
         </p>
@@ -25,6 +29,20 @@ function TaskList({ tasks }) {
                 <strong>Status:</strong>{" "}
                 {task.completed ? "Completed" : "Pending"}
               </p>
+
+              <div className="task-card-actions">
+                <button type="button" onClick={() => onEditTask(task)}>
+                  Edit
+                </button>
+
+                <button
+                  className="secondary-button"
+                  type="button"
+                  onClick={() => onDeleteTask(task.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>
