@@ -19,6 +19,7 @@ function serializeTask(task) {
     id: task.id,
     title: task.title,
     description: task.description,
+    subject: task.description,
     deadline: formatDate(task.due_date),
     dueDate: formatDate(task.due_date),
     priority: task.priority,
@@ -69,27 +70,22 @@ function validateTaskPayload(payload) {
     }
   }
 
-  const userId = Number(payload?.userId ?? payload?.user_id ?? 1);
-
-  if (!Number.isInteger(userId) || userId <= 0) {
-    return { error: "User id must be a valid number." };
-  }
-
   return {
     title,
     description,
     deadline: normalizedDate,
     priority,
     status,
-    userId,
   };
 }
 
-export async function getTasks(_request, response) {
+export async function getTasks(request, response) {
   const result = await query(
     `SELECT id, title, description, due_date, priority, status, user_id, created_at
      FROM tasks
-     ORDER BY created_at DESC, id DESC`
+     WHERE user_id = $1
+     ORDER BY created_at DESC, id DESC`,
+    [request.user.id]
   );
 
   response.json(result.rows.map(serializeTask));
@@ -113,7 +109,7 @@ export async function createTask(request, response) {
       validatedTask.deadline,
       validatedTask.priority,
       validatedTask.status,
-      validatedTask.userId,
+      request.user.id,
     ]
   );
 
@@ -141,9 +137,8 @@ export async function updateTask(request, response) {
          description = $2,
          due_date = $3,
          priority = $4,
-         status = $5,
-         user_id = $6
-     WHERE id = $7
+         status = $5
+     WHERE id = $6 AND user_id = $7
      RETURNING id, title, description, due_date, priority, status, user_id, created_at`,
     [
       validatedTask.title,
@@ -151,8 +146,8 @@ export async function updateTask(request, response) {
       validatedTask.deadline,
       validatedTask.priority,
       validatedTask.status,
-      validatedTask.userId,
       taskId,
+      request.user.id,
     ]
   );
 
@@ -172,7 +167,10 @@ export async function deleteTask(request, response) {
     return;
   }
 
-  const result = await query("DELETE FROM tasks WHERE id = $1 RETURNING id", [taskId]);
+  const result = await query(
+    "DELETE FROM tasks WHERE id = $1 AND user_id = $2 RETURNING id",
+    [taskId, request.user.id]
+  );
 
   if (result.rowCount === 0) {
     response.status(404).json({ error: "Task not found." });

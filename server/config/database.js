@@ -21,4 +21,13 @@ const pool = new pg.Pool({
 
 export const query = (text, params) => pool.query(text, params);
 export const getClient = () => pool.connect();
+
+export async function ensureDatabaseSchema() {
+  await query(`
+    ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS reset_token_hash VARCHAR(255),
+    ADD COLUMN IF NOT EXISTS reset_token_expires_at TIMESTAMP
+  `);
+}
+
 export default pool;
