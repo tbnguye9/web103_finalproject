@@ -73,7 +73,20 @@ body {
   font-size: 1rem;
 }
 
-.task-form button {
+.task-form-actions,
+.task-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.form-error {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 0.95rem;
+}
+
+.task-form button,
+.task-card-actions button {
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -83,8 +96,22 @@ body {
   cursor: pointer;
 }
 
-.task-form button:hover {
+.task-form button:hover,
+.task-card-actions button:hover {
   background: #1d4ed8;
+}
+
+.task-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.secondary-button {
+  background: #6b7280;
+}
+
+.secondary-button:hover {
+  background: #4b5563;
 }
 
 .task-list {
@@ -119,6 +146,9 @@ body {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+.task-card-actions {
+  margin-top: 12px;
 }
 
 .empty-message {
