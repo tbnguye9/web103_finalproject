@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useEffect } from "react";
 
 const emptyTask = {
   title: "",
-  subject: "",
+  description: "",
   deadline: "",
 };
 
@@ -14,23 +13,17 @@ function TaskForm({
   onCreateTask,
   onUpdateTask,
 }) {
-  const [title, setTitle] = useState("");
-  const [subject, setSubject] = useState("");
-  const [deadline, setDeadline] = useState("");
+  const initialTask = editingTask || emptyTask;
+  const [title, setTitle] = useState(initialTask.title || "");
+  const [description, setDescription] = useState(
+    initialTask.description || initialTask.subject || ""
+  );
+  const [deadline, setDeadline] = useState(initialTask.deadline || "");
   const [formError, setFormError] = useState("");
-
-  useEffect(() => {
-    const nextTask = editingTask || emptyTask;
-
-    setTitle(nextTask.title);
-    setSubject(nextTask.subject);
-    setDeadline(nextTask.deadline);
-    setFormError("");
-  }, [editingTask]);
 
   const resetForm = () => {
     setTitle("");
-    setSubject("");
+    setDescription("");
     setDeadline("");
     setFormError("");
   };
@@ -38,14 +31,14 @@ function TaskForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !subject.trim() || !deadline) {
-      setFormError("Enter a title, subject, and deadline before saving.");
+    if (!title.trim() || !description.trim() || !deadline) {
+      setFormError("Enter a title, description, and deadline before saving.");
       return;
     }
 
     const taskDetails = {
       title: title.trim(),
-      subject: subject.trim(),
+      description: description.trim(),
       deadline,
     };
 
@@ -75,7 +68,7 @@ function TaskForm({
       <p className="form-note">
         {editingTask
           ? "Update the selected study task and save your changes."
-          : "Add a new study task with a subject and deadline."}
+          : "Add a new study task with details and a deadline."}
       </p>
 
       <form className="task-form" onSubmit={handleSubmit}>
@@ -89,9 +82,9 @@ function TaskForm({
 
         <input
           type="text"
-          placeholder="Subject"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          placeholder="Description or subject"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           required
         />
 
