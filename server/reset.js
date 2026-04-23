@@ -1,7 +1,8 @@
 import { query } from "./config/database.js";
+import bcrypt from "bcryptjs";
 
 const seedUsers = [
-  ["StudyBuddy Demo User", "demo@studybuddy.local"],
+  ["StudyBuddy Demo User", "demo@studybuddy.local", "DemoPass123!"],
 ];
 
 const seedTasks = [
@@ -27,11 +28,16 @@ async function resetDatabase() {
   await query("DROP TABLE IF EXISTS tasks");
   await query("DROP TABLE IF EXISTS users");
 
+  const passwordHash = await bcrypt.hash(seedUsers[0][2], 10);
+
   await query(`
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
       full_name VARCHAR(255) NOT NULL,
       email VARCHAR(255) NOT NULL UNIQUE,
+      password_hash VARCHAR(255) NOT NULL,
+      reset_token_hash VARCHAR(255),
+      reset_token_expires_at TIMESTAMP,
       created_at TIMESTAMP NOT NULL DEFAULT NOW()
     )
   `);
@@ -51,9 +57,9 @@ async function resetDatabase() {
 
   for (const [fullName, email] of seedUsers) {
     await query(
-      `INSERT INTO users (full_name, email)
-       VALUES ($1, $2)`,
-      [fullName, email]
+      `INSERT INTO users (full_name, email, password_hash)
+       VALUES ($1, $2, $3)`,
+      [fullName, email, passwordHash]
     );
   }
 
