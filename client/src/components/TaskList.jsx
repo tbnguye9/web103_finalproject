@@ -1,7 +1,12 @@
-function TaskList({ errorMessage, isLoading, onDeleteTask, onEditTask, tasks }) {
+function TaskList({ errorMessage, isLoading, onDeleteTask, onEditTask, tasks, user }) {
   return (
     <section className="task-list-section">
-      <h2>Task List</h2>
+      <div className="task-list-header">
+        <div>
+          <h2>Task List</h2>
+          <p className="form-note">Signed in as {user.email}</p>
+        </div>
+      </div>
 
       {errorMessage ? <p className="form-error">{errorMessage}</p> : null}
 
@@ -18,11 +23,15 @@ function TaskList({ errorMessage, isLoading, onDeleteTask, onEditTask, tasks }) 
               <h3>{task.title}</h3>
 
               <p>
-                <strong>Subject:</strong> {task.subject}
+                <strong>Description:</strong> {task.description || task.subject}
               </p>
 
               <p>
                 <strong>Deadline:</strong> {task.deadline}
+              </p>
+
+              <p>
+                <strong>Priority:</strong> {task.priority}
               </p>
 
               <p>
